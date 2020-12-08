@@ -1,5 +1,7 @@
 # rk1_frontend
 
+Талмаза Виктория (команда MVVM)
+
 Нужно реализовать паттерн chaining
 
 ```javascript
