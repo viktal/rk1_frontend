@@ -1,22 +1,20 @@
 //version 1
-function CreateHash1() {
-    let map = {};
-    this.set = function (key, value) {
-        map[key] = value;
+let CreateHash1 = () => {
+    this.map = {};
+    this.set = (key, value) => {
+        this.map[key] = value;
         return this;
     }
-
-    this.remove = function (key) {
-        delete map[key];
+    this.remove = (key) => {
+        delete this.map[key];
         return this;
     }
-    this.getHash = function () {
-        return map;
+    this.getHash = () => {
+        return this.map;
     }
 }
 
 const hash1 = new CreateHash1();
-
 console.log(hash1.set('key', 'value')
     .set('key2', 'value2')
     .remove('key')
@@ -25,27 +23,24 @@ console.log(hash1.set('key', 'value')
 );
 
 //version 2
-function createHash2() {
+let createHash2 = () => {
     return {
+        map: {},
         set: function (key, value) {
-            this[key] = value;
+            this.map[key] = value;
             return this;
         },
         remove: function (key) {
-            delete this[key];
+            delete this.map[key];
             return this;
         },
         getHash: function () {
-            delete this.set;
-            delete this.remove;
-            delete this.getHash;
-            return this;
+            return this.map;
         }
     }
 }
 
 const hash2 = createHash2();
-
 console.log(hash2.set('key', 'value')
     .set('key2', 'value2')
     .remove('key')
