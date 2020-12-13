@@ -1,20 +1,24 @@
 //version 1
 let CreateHash1 = () => {
-    this.map = {};
+    let map = {};
     this.set = (key, value) => {
-        this.map[key] = value;
+        map[key] = value;
         return this;
     }
     this.remove = (key) => {
-        delete this.map[key];
+        delete map[key];
         return this;
     }
     this.getHash = () => {
-        return this.map;
+        return map;
     }
-}
+    return this;
+};
 
-const hash1 = new CreateHash1();
+const hash1 = CreateHash1();
+hash1.map = {anyOtherProps: 'lol'};
+console.log(hash1.getHash()); //{}
+
 console.log(hash1.set('key', 'value')
     .set('key2', 'value2')
     .remove('key')
@@ -24,23 +28,26 @@ console.log(hash1.set('key', 'value')
 
 //version 2
 let createHash2 = () => {
+    let map = {};
     return {
-        map: {},
         set: function (key, value) {
-            this.map[key] = value;
+            map[key] = value;
             return this;
         },
         remove: function (key) {
-            delete this.map[key];
+            delete map[key];
             return this;
         },
         getHash: function () {
-            return this.map;
+            return map;
         }
     }
 }
 
 const hash2 = createHash2();
+hash2.map = {anyOtherProps: 'lol'};
+console.log(hash2.getHash()); //{}
+
 console.log(hash2.set('key', 'value')
     .set('key2', 'value2')
     .remove('key')
